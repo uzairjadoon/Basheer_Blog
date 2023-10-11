@@ -1,0 +1,35 @@
+﻿@model BasherBlog.Models.PostReaction;
+@{
+    ViewData["Title"] = "CreatePostReaction";
+}
+
+
+
+<div class="Container">
+    <div class="row">
+
+        <div class="col-md-3"></div>
+
+        <div class="col-md-6 border  border-danger border-4 mt-3 p-4">
+            <form asp-controller="Post" asp-action="CreatePostReaction">
+              
+                <label asp-for="PostId">Post Title </label>
+                <select asp-for="PostId" class="form-control" asp-items="@ViewBag.Posts" placeholder="Enter Title" >   </select>
+                <span asp-validation-for="PostId" class="text-danger"></span>
+                <br />
+                <label asp-for="ReactionTypeId">Reaction type </label>
+                <select asp-for="ReactionTypeId" class="form-control" asp-items="@ViewBag.Reactions" placeholder="Enter Short Description"></select>
+                <span asp-validation-for="ReactionTypeId" class="text-danger"></span>
+                <br />
+              
+
+                <button type="submit" class="btn btn-danger">Create New PostReaction</button>
+
+
+            </form>
+        </div>
+
+        <div class="col-md-3"></div>
+    </div>
+</div>
+

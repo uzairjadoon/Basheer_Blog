@@ -1,0 +1,33 @@
+﻿@model List<BasherBlog.Models.UserRole>;
+@{
+    ViewData["Title"] = "UserRole";
+}
+<h1>User Roles</h1>
+<div class="Container my-4">
+    <div class="row">
+        <div class="col-lg-4 border border-Danger border-5 mx-auto">
+            <table class="table table-bordered">
+                <a class="btn btn-success link-light display-5 text-decoration-none align-self-center" asp-action="AddUpdateRole"> Create </a>
+                <thead>
+                    <tr>
+                        <th> Id</th>
+                        <th> Name</th>
+                        <th> Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Id</td>
+                            <td>@item.Name</td>
+                            <td><a asp-controller="User" asp-action="AddUpdateRole" asp-route-Id="@item.Id">Edit</a> <a asp-controller="User" asp-action="DeleteRole" asp-route-Id="@item.Id">Delete</a></td>
+                        </tr>
+                    }
+
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</div>

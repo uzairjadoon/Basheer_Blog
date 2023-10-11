@@ -1,0 +1,43 @@
+﻿@model BasherBlog.Models.PostComment;
+@{
+    ViewData["Title"] = "Update Post Comment";
+}
+
+
+<h1 class="text-danger text-center">Post Comments</h1>
+<div class="Container">
+    <div class="row">
+
+        <div class="col-md-6"></div>
+        <h1 class="text-danger text-center">Update New Post Comments</h1>
+
+        <div class="col-md-6 offset-3 border  border-danger border-4 mt-3 p-4">
+            <form asp-controller="Post" asp-action="UpdatePostComment">
+                <label asp-for="PostId">Post Title </label>
+                <select asp-for="PostId" asp-items="@ViewBag.Posts" class="form-control"></select>
+                <span asp-validation-for="PostId" class="text-danger"></span>
+                <br />
+                <label asp-for="Comment">Comment Here </label>
+                <input asp-for="Comment" class="form-control" placeholder="Enter Your Comment" />
+                <span asp-validation-for="Comment" class="text-danger"></span>
+                <br />
+                <label asp-for="CommentedOn">Commented On </label>
+                <input asp-for="CommentedOn" class="form-control" placeholder="Commented ON" />
+                <span asp-validation-for="CommentedOn" class="text-danger"></span>
+
+                <br />
+
+                <input asp-for="UserId" type="hidden" class="form-control" />
+
+                <br />
+
+                <button type="submit" class="btn btn-danger">Create Comment</button>
+
+
+            </form>
+        </div>
+
+        <div class="col-md-3"></div>
+    </div>
+</div>
+

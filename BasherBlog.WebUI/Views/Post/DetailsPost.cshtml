@@ -1,0 +1,51 @@
+﻿@model BasherBlog.Models.Post
+@{
+    ViewData["Title"] = "GetPosts";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container my-5">
+    <div class="row ">
+        <div class="col-lg-10 offset-lg-2"  >
+            <table class="table table-sm table-bordered mt-3 align-middle">
+                <thead>
+                    <tr>
+                        <th colspan="9" class="text-center text-danger display-3">Detail Post</th>
+                    </tr>
+                    <tr>
+                        <th colspan="9" class="text-center">
+                            <a class="btn btn-danger link-light align-self-center display-6 text-decoration-none " asp-action="">Create Post</a></th>
+                    </tr>
+                    <tr> 
+                        <th class="fs-6 text-center">Title</th>
+                        <th class="fs-6 text-center">Short Description</th>
+                        <th class="fs-6 text-center">Description</th>
+                        <th class="fs-6 text-center">Image</th>
+                        <th class="fs-6 text-center">Image URL</th>
+                        <th class="fs-6 text-center">Posted On</th>
+                        <th class="fs-6 text-center">Category</th>
+                        <th class="fs-6 text-center">Author Name</th>
+                        <th class="fs-6 text-center">Post Status</th>
+                        <th class="fs-6 text-center">Action</th>
+                    </tr>
+                </thead> <tbody>
+                            <tr><td class="fs-6 text-center">@Model.Title</td>
+                                <td class="fs-6 text-center">@Model.shortDescription</td>
+                                <td class="fs-6 text-center">@Model.Description</td>
+                                <td class="fs-6 text-center">
+                                    <img src="@Model.Image" alt="Image Not Found" width="100" height="100"/>
+                                        </td>
+                                <td class="fs-6 text-center">@Model.Image</td>
+                                <td class="fs-6 text-center">@Model.PostedOn</td>
+                                <td class="fs-6 text-center">@Model.Category.Name</td>
+                                <td class="fs-6 text-center">@Model.User.Name</td>
+                                <td class="fs-6 text-center">@Model.PostStatus.Name</td>
+                                <td class="fs-6 text-center w-25">
+                                    <a class="btn btn-danger text-decoration-none" asp-controller="Post" asp-action="UpdatePost" asp-route-id="@Model.Id">Edit</a>
+                                </td>
+                            </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

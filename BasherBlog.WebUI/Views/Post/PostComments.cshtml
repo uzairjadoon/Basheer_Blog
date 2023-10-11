@@ -1,0 +1,59 @@
+﻿@model IEnumerable<BasherBlog.Models.PostComment>;
+@{
+    ViewData["Title"] = "PostComments";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="Contianer my-4">
+
+    <div class="row">
+        <div class="col-lg-10 offset-lg-1">
+
+            <table class="table table-sm table-bordered mt-5 align-middle ">
+              <thead>
+                  <tr>
+                      <th colspan="6"><h1 class="text-center text-success display-2">Post Comments</h1></th>
+                  </tr>
+                    <tr>
+                        <th colspan="6" class="text-center">
+                            <div class="text-center">
+                            <a class="btn btn-success text-center link-light align-self-center display-6 text-decoration-none" asp-controller="Post" asp-action="CreatePostComment">Create New PostComment</a>
+                            </div>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th class="fs-6 text-center">Sr#</th>
+                        <th class="fs-6 text-center">Comment</th>
+                        <th class="fs-6 text-center">Commented On</th>
+                        <th class="fs-6 text-center">Post Title</th>
+                        <th class="fs-6 text-center">User Name</th>
+                        <th class="fs-6 text-center">Actions</th>
+
+                    </tr>
+              </thead>
+
+                <tbody>
+                    @{
+                        int i = 0;
+                        foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="fs-6 text-center">@Convert.ToInt32(++i)</td>
+                                <td class="fs-6 text-center">@item.Comment</td>
+                                <td class="fs-6 text-center">@item.CommentedOn</td>
+                                <td class="fs-6 text-center">@item.Post.Title</td>
+                                <td class="fs-6 text-center">@item.User.Name</td>
+                                <td class="fs-6 text-center w-25">
+                                    <a class="btn btn-success text-decoration-none" asp-controller="Post" asp-action="UpdatePostComment" asp-route-id="@item.Id">Edit</a>
+                                    <a class="btn btn-success text-decoration-none" asp-controller="Post" asp-action="DeletePostComment" asp-route-id="@item.Id">Delete</a>
+                                </td>
+                            </tr>
+                        }
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

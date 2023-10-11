@@ -1,0 +1,43 @@
+﻿@model BasherBlog.Models.User;
+@{
+    ViewData["Title"] = "Register";
+}
+
+<h1>Register</h1>
+
+<div class="Container p-2 h-100">
+    <div class="row">
+
+        <div class="col-lg-4"></div>
+
+
+        <div class="col-lg-4 p-3">
+            <h1 class="text-primary text-center  display-6">Register Here</h1>
+            <div class="row d-flex justify-content-center align-items-center h-100  ">
+                <div class="card bg-dark text-white " style="border-radius: 1rem; ">
+            <form asp-controller="Account" asp-action="Register" method="post" class="p-5 ">
+                <label asp-for="Name">Name </label>
+                <input asp-for="Name" class="form-control" placeholder="Enter Name" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+                <br />
+                <label asp-for="EmailAddress">Email </label>
+                <input asp-for="EmailAddress" class="form-control" placeholder="Enter Email Address" />
+                <span asp-validation-for="EmailAddress" class="text-danger"></span>
+                <br />
+                <label asp-for="Password">Password </label>
+                <input asp-for="Password" class="form-control" placeholder="Enter Password" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+                <br />
+                <label asp-for="PhoneNumber">Phone No </label>
+                <input asp-for="PhoneNumber" class="form-control" placeholder="Enter Phone No" />
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                <br/>
+                <button type="submit" class="btn btn-danger  align-self-center text-black text-center offset-4 ">Register Here</button>
+            </form>
+        </div>
+        </div>
+        </div>
+        <div class="col-lg-4"></div>
+    </div>
+</div>
+

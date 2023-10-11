@@ -1,0 +1,57 @@
+﻿@model BasherBlog.Models.Post;
+@{
+    ViewData["Title"] = "AddUpdatePost";
+}
+
+
+
+<div class="Container">
+    <div class="row">
+
+        <div class="col-md-3"></div>
+
+        <div class="col-md-6 border  border-danger border-4 mt-3 p-4">
+            <form asp-controller="Post" asp-action="UpdatePost">
+                <label asp-for="Title">Title </label>
+                <input asp-for="Title" class="form-control" placeholder="Enter Title" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+                <br />
+                <label asp-for="shortDescription">ShortDEscription </label>
+                <input asp-for="shortDescription" class="form-control" placeholder="Enter Short Description" />
+                <span asp-validation-for="shortDescription" class="text-danger"></span>
+                <br />
+                 <label asp-for="Description">Description </label>
+                <input asp-for="Description" class="form-control" placeholder="Enter Description" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+                <br />
+                <label asp-for="Image">Image </label>
+                <input asp-for="Image" type="file" class="form-control" placeholder="Upload Image" />
+                <span asp-validation-for="Image" class="text-danger"></span>
+
+                <br />
+                <label asp-for="PostedOn">Posted On </label>
+                <input asp-for="PostedOn" type="date" class="form-control" placeholder="Enter Date" />
+                <span asp-validation-for="PostedOn" class="text-danger"></span>
+
+                <br />
+                <label asp-for="CategoryId">Category </label>
+                <select asp-for="CategoryId" asp-items="@ViewBag.Categories" class="form-control"></select>
+                <span asp-validation-for="Category.Name" class="text-danger"></span>
+
+                <input asp-for="UserId" type="hidden" class="form-control" placeholder="Enter Author Name" />
+                <br />
+                <label asp-for="PostStatusId">Post Status </label>
+                <select asp-for="PostStatusId" asp-items="@ViewBag.PostStatus" class="form-control"></select>
+                <span asp-validation-for="PostStatus.Id" class="text-danger"></span>
+                <br />
+
+               <button type="submit" class="btn btn-danger">Update New Post</button>
+
+              
+            </form>
+        </div>
+
+        <div class="col-md-3"></div>
+    </div>
+</div>
+

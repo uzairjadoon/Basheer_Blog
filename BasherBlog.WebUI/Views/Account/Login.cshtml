@@ -1,0 +1,46 @@
+﻿@model BasherBlog.Models.User;
+@{
+    ViewData["Title"] = "Login";
+
+}
+
+<h1>Login</h1>
+
+<section class="vh-100 gradient-custom">
+
+    <div class="Container py-5 h-100">
+<div class="row">
+           
+    <div class="col-md-4"></div>
+                
+    <div class="col-md-4">
+                    <div class="row d-flex justify-content-center align-items-center h-100">
+                    <div class="card bg-dark text-white" style="border-radius: 1rem;">
+                    <div class="card-body p-5 text-center">
+            <form asp-controller="Account" asp-action="Login" method="post">
+                <label asp-for="EmailAddress">Email </label>
+                <input asp-for="EmailAddress" class="form-control" placeholder="Enter Email Address" />
+                <span asp-validation-for="EmailAddress" class="text-danger"></span>
+                <br />
+
+                <label asp-for="Password">Password </label>
+                <input asp-for="Password" class="form-control" placeholder="Enter Password" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+                <br />
+                @if(!string.IsNullOrEmpty(ViewBag.error))
+                {
+                    <p class="text-danger ">@ViewBag.Error </p>
+                }
+                <button type="submit" class="btn btn-danger ">Login Here</button>
+
+        </form>
+    </div>
+   
+    
+        <div class="col-md-4"></div>
+                </div>
+                </div>
+</div>
+</div>
+</div>
+</section>

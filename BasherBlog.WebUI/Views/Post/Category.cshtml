@@ -1,0 +1,41 @@
+﻿@model List< BasherBlog.Models.Category>;
+@{
+    ViewData["Title"] = "Category";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container">
+    <h1 class="text-primary text-center my-5 display-6">Category</h1>
+    <div class="row">
+    </div>
+    <div class="row">
+        <div class="col-lg-4 offset-lg-4 ">
+            <table class="table table-bordered border-success">
+                <thead>
+                    <tr>
+                        <th colspan="4" class="text-center">
+                            <a class="btn btn-success link-light display-6 text-decoration-none align-self-center" asp-action="AddUpdateCategory">Create Now</a>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th class="text-center">Id</th>
+                        <th class="text-center">Name</th>
+                        <th class="text-center">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="text-center">@item.Id</td>
+                            <td class="text-center">@item.Name</td>
+                            <td>
+                                <a asp-controller="Post" asp-action="AddUpdateCategory" asp-route-Id="@item.Id" class="btn btn-success mx-3">Edit</a>
+                                <a asp-controller="Post" asp-action="DeleteCategory" asp-route-Id="@item.Id" class="btn btn-success">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

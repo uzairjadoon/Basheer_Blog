@@ -1,0 +1,70 @@
+﻿@model BasherBlog.Models.User;
+@{
+    ViewData["Title"] = "AddUpdateUser";
+}
+
+<h1>Register</h1>
+
+<div class="Container">
+    <div class="row">
+
+        <div class="col-md-4"></div>
+
+        <div class="col-md-4">
+            <form asp-controller="User" asp-action="AddUpdateUser" method="post">
+                <label asp-for="Name">Name </label>
+                <input asp-for="Name" class="form-control" placeholder="Enter Name" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+                <br />
+                <label asp-for="EmailAddress">Email </label>
+                <input asp-for="EmailAddress" class="form-control" placeholder="Enter Email Address" />
+                <span asp-validation-for="EmailAddress" class="text-danger"></span>
+                <br />
+
+                @*<label asp-for="Password">Password </label>*@
+                <input type="hidden" asp-for="Password" class="form-control" placeholder="Enter Password" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+               
+
+                @*<label asp-for="AccessToken ">AccessToken </label>*@
+                <input type="hidden" asp-for="AccessToken" class="form-control" placeholder="Access Token" />
+                <span asp-validation-for="AccessToken" class="text-danger"></span>
+             
+
+
+                <label asp-for="PhoneNumber">Phone No </label>
+                <input asp-for="PhoneNumber" class="form-control" placeholder="Enter Phone No" />
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+
+                <br />
+
+                <div class="form-check form-switch my-2">
+                    @if(Model.IsConfirmed){
+
+                        <label asp-for="IsConfirmed"> Is Confirmed</label>
+                        <input asp-for="IsConfirmed" type="checkbox" class="form-check-input" />
+                        <span asp-validation-for="IsConfirmed" class="text-danger"></span>
+                    }
+                    else
+                    {
+                        <label asp-for="IsConfirmed"> Is Confirmed</label>
+                        <input asp-for="IsConfirmed" type="checkbox" class="form-check-input" />
+                        <span asp-validation-for="IsConfirmed" class="text-success"></span>
+                    }
+
+
+                </div>
+
+                <label asp-for="UserRoleId" class="form-label" ></label>
+                <select asp-for="UserRoleId" asp-items="@ViewBag.AllRoles" class="form-control"></select>
+                <span asp-validation-for="UserRoleId" class="text-danger"></span>
+                </br>
+                <button type="submit" class="btn btn-danger ">Update User</button>
+
+            </form>
+        </div>
+
+        <div class="col-md-4"></div>
+    </div>
+</div>
+

@@ -1,0 +1,41 @@
+﻿@model List< BasherBlog.Models.ReactionType>;
+@{
+    ViewData["Title"] = "ReactionTypes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container">
+    <h1 class="text-primary text-center  my-5 display-6">Reaction Types</h1>
+    <div class="row">
+    </div>
+    <div class="row">
+        <div class="col-lg-4 offset-lg-4 ">
+            <table class="table table-bordered border-success">
+                <thead>
+                    <tr>
+                        <th colspan="6" class="text-center">
+                            <a class="btn btn-success link-light display-6 text-decoration-none align-self-center" asp-action="UpdateReactionTypes">Create Now</a>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th class="text-center">Id</th>
+                        <th class="text-center">Name</th>
+                        <th class="text-center">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="text-center">@item.Id</td>
+                            <td class="text-center">@item.Name</td>
+                            <td>
+                                <a asp-controller="Post" asp-action="UpdateReactionTypes" asp-route-Id="@item.Id" class="btn btn-success px-4 " style="margin-left:25px">Edit</a>
+                                <a asp-controller="Post" asp-action="DeleteReactionType" asp-route-Id="@item.Id" class="btn btn-success " style="margin-left:15px">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

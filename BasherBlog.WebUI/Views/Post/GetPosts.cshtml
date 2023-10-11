@@ -1,0 +1,51 @@
+﻿@model IEnumerable<BasherBlog.Models.Post>;
+@{
+    ViewData["Title"] = "GetPosts";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="Contianer my-4">
+    <div class="row">
+        <div class="col-lg-10 offset-lg-1">         
+<table class="table table-sm table-bordered mt-5 align-middle ">
+                <thead>
+                   <tr>
+                        <th colspan="5" class="text-center"><a class="text-center  display-1 text-decoration-none fs-3 fw-5 my-5 text-success">Posts</a></th>
+                    </tr>
+                    <tr>
+                        <th colspan="5" class="text-center">
+                            <a   class="btn btn-danger text-center align-self-center display-6" asp-controller="Post" asp-action="CreatePost">Create Post</a>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th class="fs-6 text-center">Sr#</th>
+                        <th class="fs-6 text-center">Title</th>
+                        <th class="fs-6 text-center">Short Description</th>
+                        <th class="fs-6 text-center">Category</th>
+                        <th class="fs-6 text-center">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        int i = 0;
+                        foreach(var item in Model)
+                        {
+                            <tr>
+                                <td class="fs-6 text-center">@Convert.ToInt32(++i)</td>
+                                <td class="fs-6 text-center">@item.Title</td>   
+                                <td class="fs-6 text-center">@item.shortDescription</td>
+                                <td class="fs-6 text-center">@item.Category.Name</td>
+                        <td class="fs-6 text-center w-25">
+                                    <a class="btn btn-danger text-decoration-none" asp-controller="Post" asp-action="UpdatePost" asp-route-id="@item.Id">Edit</a>
+                                    <a class="btn btn-danger text-decoration-none" asp-controller="Post" asp-action="DetailsPost" asp-route-id="@item.Id">Details</a>
+                                    <a class="btn btn-danger text-decoration-none" asp-controller="Post" asp-action="DeletePost" asp-route-id="@item.Id">Delete</a>
+                         </td>
+                            </tr>
+                        }
+                    }
+                   
+                </tbody>
+</table>
+        </div>
+    </div>
+</div>
+

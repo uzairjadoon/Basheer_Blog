@@ -1,0 +1,138 @@
+﻿@using BasherBlog.Data;
+@using BasherBlog.Models;
+@using System.Configuration;
+@inject BasheerContext db;
+
+@{
+    User user = new User();
+    string accesstoken = Context.Request.Cookies["user-access-token"];
+    if (!string.IsNullOrEmpty(accesstoken))
+    {
+        user = db.Users.Where(x => x.AccessToken.Equals(accesstoken)).FirstOrDefault();
+    }
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] Basheer Blogs</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/BasherBlog.WebUI.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+
+        <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
+            <h1 class="navbar-brand mx-3 text-danger " href="/Home/Index">My Blog</h1>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse offset-1" id="navbarNav ">
+                <ul class="navbar-nav  ">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/Home/Index">Home</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav  mx-3">
+                    <li class="nav-item active">
+                        <a class="nav-link " href="/Home/Index">About</a>
+                    </li>
+                </ul>
+                @if (user.UserRoleId == 2002)
+                {
+                    <div class="dropdown mx-3">
+                        <button class="btn btn-primary dropdown-toggle ms-auto " type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            User
+                        </button>
+                        <ul class="dropdown-menu  " aria-labelledby="dropdownMenuButton1">
+                            <li><a class="dropdown-item" asp-controller="User" asp-action="Users"> Users </a></li>
+                            <li><a class="dropdown-item" asp-controller="User" asp-action="AddUpdateRole">Add Update Role</a></li>
+                            <li><a class="dropdown-item" asp-controller="User" asp-action="AddUpdateUser">AddUpdate User</a></li>
+                            <li><a class="dropdown-item" asp-controller="User" asp-action="UserRoles"> Roles </a></li>
+                        </ul>
+                    </div>
+                    <div class="dropdown mx-3">
+                        <button class="btn btn-primary dropdown-toggle ms-auto " type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        Post
+                    </button>
+                    <ul class="dropdown-menu " aria-labelledby="dropdownMenuButton1">
+                        <li><a class="dropdown-item" asp-controller="Post" asp-action="GetPosts">GetPost </a></li>
+                        <li><a class="dropdown-item" asp-controller="Post" asp-action="CreatePost">Create Post </a></li>
+                        <li><a class="dropdown-item" asp-controller="Post" asp-action="PostStatus">Post Status</a></li>
+                        <li><a class="dropdown-item" asp-controller="Post" asp-action="Category">Post Category </a></li>
+                        <li><a class="dropdown-item" asp-controller="Post" asp-action="ReactionTypes"> Reaction Types </a></li>
+                        <li><a class="dropdown-item" asp-controller="Post" asp-action="PostComments"> Post Comments </a></li>
+                        <li><a class="dropdown-item" asp-controller="Post" asp-action="PostReactions"> Post Reactions </a></li>
+                    </ul>
+                    </div>
+                }
+                else if (user.UserRoleId==2003)
+                {
+                    <a class="dropdown-item" asp-controller="Post" asp-action="GetPosts">Posts</a>
+                }
+                <div class="dropdown collapse navbar-collapse mx-5" id="navbarNav ">
+                     <a class="nav-link dropdown-toggle ms-auto bg-danger text-black fw-bold" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            ACCOUNT
+          </a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        @if (user.UserRoleId == 0)
+                        {
+
+
+                            <li> <a class=" dropdown-item" asp-area="" asp-controller="Account" asp-action="Login">Login</a></li>
+
+                            <li class=""> <a class=" dropdown-item" asp-area="" asp-controller="Account" asp-action="Register">Register</a> </li>
+
+                        }
+                        else
+                        {
+                            <li class=""> <a class=" dropdown-item" asp-area="" asp-controller="Home" asp-action="Index"> @user.Name </a> </li>
+                            <li class=""> <a class=" dropdown-item" asp-area="" asp-controller="Account" asp-action="Logout">  Logout</a> </li>
+
+
+
+                        }
+                    </ul>
+                </div>
+            </div>
+
+        </nav>
+    </header>
+
+   
+
+
+    <div class="container-fluid"  >
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    @*<footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2023 - BasherBlog.WebUI - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>*@
+    <footer class=" pt-2 bg-danger pb-0 ">
+        <div class="container">
+            <div class="row  justify-content-between">
+                <div class="col-md-12  ">
+                    <p class="mb-0 text-decoration-none text-center">Designed by : <a href="#" class="fw-bold text-black">Uzair Jadoon</a></p>
+                    <p class="mb-0 text-decoration-none text-center">Email Me : <a  href="https://www.google.com/gmail/about/" class="fw-bold text-black">uzairjadoon811@gmail.com</a></p>
+                    &copy; 2023 - BasherBlog.WebUI - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+
+                </div>
+                
+            </div>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

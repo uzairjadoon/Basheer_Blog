@@ -1,0 +1,53 @@
+﻿@model List< BasherBlog.Models.PostReaction>;
+@{
+    ViewData["Title"] = "PostReactions";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <h1 class="text-primary text-center my-5 display-6">Post Reaction</h1>
+    <div class="row">
+    </div>
+    <div class="row">
+        <div class="col-md-8 offset-2 ">
+            <table class="table table-bordered border-success">
+                <thead>
+                    <tr>
+                        <th colspan="6" class="text-center">
+                            <a class="btn btn-success link-light display-6 text-decoration-none align-self-center" asp-action="CreatePostReaction">Create Now</a>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th class="text-center">sr#</th>
+                        <th class="text-center">Post Title</th>
+                        <th class="text-center">Reaction Type</th>
+                        <th class="text-center">User Name</th>
+                        <th class="text-center">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                     int i=0;
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="text-center">@Convert.ToInt32(++i);</td>
+                            <td class="text-center">@item.Post.Title</td>
+                            <td class="text-center">@item.Type.Name</td>
+                            <td class="text-center">@item.User.Name</td>
+
+
+
+
+                            <td>
+                                <a asp-controller="Post" asp-action="UpdatePostReaction" asp-route-Id="@item.Id" class="btn btn-success px-4 " style="margin-left:25px">Edit</a>
+                                <a asp-controller="Post" asp-action="DeletePostReaction" asp-route-Id="@item.Id" class="btn btn-success " style="margin-left:15px">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
