@@ -177,7 +177,7 @@ namespace BasherBlog.Repository.Implementation
             _db.postComments.Remove(postComment);
             _db.SaveChanges();
         }
-        //-----------Show Active Posts-----------
+        //-----------Show Active Posts-----&&----- Author Implementaion-
         public List<Post> GetActivePosts()
         {
             return _db.Posts.Where(x => x.PostStatus.Name.ToLower().Equals("active")).ToList();
